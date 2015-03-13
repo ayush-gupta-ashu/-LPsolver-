@@ -42,5 +42,32 @@ class LPsolver():
             if q==[]:
                 return "unbounded function"
                 break
+            #i have seen your part and completed the question
+
+
+
+            r=minpos.index(min(q))
+
+            B[r]=C[c]
+            bx[r]=c
+            iarray[r,:]=iarray[r,:]/iarray[r,c]
+            for i in range(lenght_b):
+                if(i!=r):
+                    iarray[i,:]=iarray[i,:]-(iarray[i,c]/iarray[r,c])*iarray[r,:]
+
+        for i in range(len(bx)):
+            if bx[i]<lenght_a:
+                x[bx[i]]=iarray[i,-1]
+        x=map(int,x)
+
+        x.append(sum([x[i]*a[i] for i in range(lenght_a)]))
+        return x
+
+
+lps=LPsolver()
+solution=lps.solve(objective,constraint1,constraint2)
+print solution
+
+
 
 
